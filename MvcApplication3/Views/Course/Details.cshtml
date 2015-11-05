@@ -1,0 +1,78 @@
+﻿@model MvcApplication3.Models.Course
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Course</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Year)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Year)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AmountDeposit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AmountDeposit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AmountInvoice1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AmountInvoice1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AmountInvoice2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AmountInvoice2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DepositDueTimeframe)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DepositDueTimeframe)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Invoice1DueTimeframe)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Invoice1DueTimeframe)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Invoice2DueTimeframe)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Invoice2DueTimeframe)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

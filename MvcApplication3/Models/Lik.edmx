@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LikModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="LikModelStoreContainer">
+          <EntitySet Name="Course" EntityType="LikModel.Store.Course" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Invoice" EntityType="LikModel.Store.Invoice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Person" EntityType="LikModel.Store.Person" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Registration" EntityType="LikModel.Store.Registration" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Invoice_Registration" Association="LikModel.Store.FK_Invoice_Registration">
+            <End Role="Registration" EntitySet="Registration" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_Course" Association="LikModel.Store.FK_Registration_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_Person" Association="LikModel.Store.FK_Registration_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Venue" Type="varchar" MaxLength="200" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Year" Type="varchar" MaxLength="2" />
+          <Property Name="Name" Type="varchar" MaxLength="200" />
+          <Property Name="AmountDeposit" Type="money" />
+          <Property Name="AmountInvoice1" Type="money" />
+          <Property Name="AmountInvoice2" Type="money" />
+          <Property Name="DepositDueTimeframe" Type="smallint" />
+          <Property Name="Invoice1DueTimeframe" Type="smallint" />
+          <Property Name="Invoice2DueTimeframe" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="DateInvoice" Type="datetime" />
+          <Property Name="DateSent" Type="datetime" />
+          <Property Name="DatePaid" Type="datetime" />
+          <Property Name="DateCancellation" Type="datetime" />
+          <Property Name="Type" Type="varchar" MaxLength="20" />
+          <Property Name="RegistrationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="varchar" MaxLength="200" />
+          <Property Name="LastName" Type="varchar" MaxLength="200" />
+          <Property Name="EMail" Type="varchar" MaxLength="200" />
+          <Property Name="Phone" Type="varchar" MaxLength="100" />
+          <Property Name="Sex" Type="char" MaxLength="1" />
+          <Property Name="Zip" Type="varchar" MaxLength="10" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="City" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Anmerkung" Type="varchar" MaxLength="200" />
+          <Property Name="CourseId" Type="int" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Invoice_Registration">
+          <End Role="Registration" Type="LikModel.Store.Registration" Multiplicity="1" />
+          <End Role="Invoice" Type="LikModel.Store.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="RegistrationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_Course">
+          <End Role="Course" Type="LikModel.Store.Course" Multiplicity="1" />
+          <End Role="Registration" Type="LikModel.Store.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_Person">
+          <End Role="Person" Type="LikModel.Store.Person" Multiplicity="1" />
+          <End Role="Registration" Type="LikModel.Store.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LikModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LikEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Courses" EntityType="LikModel.Course" />
+          <EntitySet Name="Invoices" EntityType="LikModel.Invoice" />
+          <EntitySet Name="People" EntityType="LikModel.Person" />
+          <EntitySet Name="Registrations" EntityType="LikModel.Registration" />
+          <AssociationSet Name="FK_Registration_Course" Association="LikModel.FK_Registration_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Registration" Association="LikModel.FK_Invoice_Registration">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_Person" Association="LikModel.FK_Registration_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Venue" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Year" Type="String" />
+          <Property Name="Name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="AmountDeposit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AmountInvoice1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AmountInvoice2" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DepositDueTimeframe" Type="Int16" />
+          <Property Name="Invoice1DueTimeframe" Type="Int16" />
+          <Property Name="Invoice2DueTimeframe" Type="Int16" />
+          <NavigationProperty Name="Registrations" Relationship="LikModel.FK_Registration_Course" FromRole="Course" ToRole="Registration" />
+          <Property Type="DateTime" Name="Date" Precision="3" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DateInvoice" Type="DateTime" Precision="3" />
+          <Property Name="DateSent" Type="DateTime" Precision="3" />
+          <Property Name="DatePaid" Type="DateTime" Precision="3" />
+          <Property Name="DateCancellation" Type="DateTime" Precision="3" />
+          <Property Name="Type" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="RegistrationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Registration" Relationship="LikModel.FK_Invoice_Registration" FromRole="Invoice" ToRole="Registration" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="EMail" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Sex" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="Zip" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Registrations" Relationship="LikModel.FK_Registration_Person" FromRole="Person" ToRole="Registration" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Anmerkung" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="CourseId" Type="Int32" Nullable="false" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="LikModel.FK_Registration_Course" FromRole="Registration" ToRole="Course" />
+          <NavigationProperty Name="Invoices" Relationship="LikModel.FK_Invoice_Registration" FromRole="Registration" ToRole="Invoice" />
+          <NavigationProperty Name="Person" Relationship="LikModel.FK_Registration_Person" FromRole="Registration" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_Registration_Course">
+          <End Role="Course" Type="LikModel.Course" Multiplicity="1" />
+          <End Role="Registration" Type="LikModel.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Registration">
+          <End Role="Registration" Type="LikModel.Registration" Multiplicity="1" />
+          <End Role="Invoice" Type="LikModel.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="RegistrationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_Person">
+          <End Role="Person" Type="LikModel.Person" Multiplicity="1" />
+          <End Role="Registration" Type="LikModel.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LikModelStoreContainer" CdmEntityContainer="LikEntities">
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="LikModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Venue" ColumnName="Venue" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AmountDeposit" ColumnName="AmountDeposit" />
+                <ScalarProperty Name="AmountInvoice1" ColumnName="AmountInvoice1" />
+                <ScalarProperty Name="AmountInvoice2" ColumnName="AmountInvoice2" />
+                <ScalarProperty Name="DepositDueTimeframe" ColumnName="DepositDueTimeframe" />
+                <ScalarProperty Name="Invoice1DueTimeframe" ColumnName="Invoice1DueTimeframe" />
+                <ScalarProperty Name="Invoice2DueTimeframe" ColumnName="Invoice2DueTimeframe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="LikModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="DateInvoice" ColumnName="DateInvoice" />
+                <ScalarProperty Name="DateSent" ColumnName="DateSent" />
+                <ScalarProperty Name="DatePaid" ColumnName="DatePaid" />
+                <ScalarProperty Name="DateCancellation" ColumnName="DateCancellation" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="LikModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registrations">
+            <EntityTypeMapping TypeName="LikModel.Registration">
+              <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Anmerkung" ColumnName="Anmerkung" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
