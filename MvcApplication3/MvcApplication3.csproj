@@ -194,6 +194,7 @@
     <Compile Include="Models\Course.cs">
       <DependentUpon>Lik.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CourseExtension.cs" />
     <Compile Include="Models\Invoice.cs">
       <DependentUpon>Lik.tt</DependentUpon>
     </Compile>
