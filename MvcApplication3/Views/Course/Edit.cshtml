@@ -107,4 +107,52 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/localization/globalize.js"></script>
+    <script type="text/javascript" src="~/Scripts/localization/globalize/message.js"></script>
+    <script type="text/javascript" src="~/Scripts/localization/globalize/number.js"></script>
+    <script type="text/javascript" src="~/Scripts/localization/globalize/plural.js"></script>
+    <script type="text/javascript" src="~/Scripts/localization/globalize/currency.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/localization/globalize/date.js"></script>*@
+    <script type="text/javascript" src="~/Scripts/localization/globalize/relative-time.js"></script>
+    <script type="text/javascript" src="~/Scripts/localization/globalize/cultures/globalize.culture.de-DE.js"></script>
+    <script type="text/javascript">
+        (function ($, Globalize) {
+
+            // Tell the validator that we want numbers parsed using Globalize
+
+            $.validator.methods.number = function (value, element) {
+                var val = Globalize.parseFloat(value);
+                return this.optional(element) || ($.isNumeric(val));
+            };
+
+            $.validator.methods.min = function (value, element, param) {
+                var val = Globalize.parseFloat(value);
+                return this.optional(element) || val >= param;
+            };
+
+            $.validator.methods.max = function (value, element, param) {
+                var val = Globalize.parseFloat(value);
+                return this.optional(element) || val <= param;
+            };
+
+            $.validator.methods.range = function (value, element, param) {
+                var val = Globalize.parseFloat(value);
+                return this.optional(element) || (val >= param[0] && val <= param[1]);
+            };
+
+            // Tell the validator that we want dates parsed using Globalize
+
+            //$.validator.methods.date = function (value, element) {
+            //    var val = Globalize.parseDate(value);
+            //    return this.optional(element) || (val);
+            //};
+
+        }(jQuery, Globalize));
+
+        $(document).ready(function () {
+            // Set Globalize to german
+            Globalize.locale("de-DE");
+        });
+
+    </script>
 }

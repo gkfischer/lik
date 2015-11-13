@@ -2,50 +2,40 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Globalization;
 using System.Linq;
-using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using MvcApplication3.Models;
 
 namespace MvcApplication3.Controllers
 {
-    public class CourseController : Controller
+    public class PersonController : Controller
     {
         private LikEntities db = new LikEntities();
 
-        protected override void Initialize(System.Web.Routing.RequestContext requestContext)
-        {
-            base.Initialize(requestContext);
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("de-AT");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-AT");
-        }
-
         //
-        // GET: /Default1/
+        // GET: /Person/
 
         public ActionResult Index()
         {
-            var x = Thread.CurrentThread.CurrentCulture;
-            return View(db.Courses.ToList());
+            return View(db.People.OrderBy(m => m.Registrations.OrderBy(r => r.Date).Select(r2 => r2.Date).FirstOrDefault()).ToList());
         }
 
         //
-        // GET: /Default1/Details/5
+        // GET: /Person/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Person person = db.People.Find(id);
+            if (person == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(person);
         }
 
         //
-        // GET: /Default1/Create
+        // GET: /Person/Create
 
         public ActionResult Create()
         {
@@ -53,73 +43,73 @@ namespace MvcApplication3.Controllers
         }
 
         //
-        // POST: /Default1/Create
+        // POST: /Person/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Course course)
+        public ActionResult Create(Person person)
         {
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
+                db.People.Add(person);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(course);
+            return View(person);
         }
 
         //
-        // GET: /Default1/Edit/5
+        // GET: /Person/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Person person = db.People.Find(id);
+            if (person == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(person);
         }
 
         //
-        // POST: /Default1/Edit/5
+        // POST: /Person/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Course course)
+        public ActionResult Edit(Person person)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;
+                db.Entry(person).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(course);
+            return View(person);
         }
 
         //
-        // GET: /Default1/Delete/5
+        // GET: /Person/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Person person = db.People.Find(id);
+            if (person == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(person);
         }
 
         //
-        // POST: /Default1/Delete/5
+        // POST: /Person/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
+            Person person = db.People.Find(id);
+            db.People.Remove(person);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

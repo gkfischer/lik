@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MvcApplication3.Models.Course>
+﻿@model IEnumerable<MvcApplication3.Models.Registration>
 
 @{
     ViewBag.Title = "Index";
@@ -12,16 +12,16 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Venue)
+            @Html.DisplayNameFor(model => model.Anmerkung)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Year)
+            @Html.DisplayNameFor(model => model.Course.Venue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Person.FirstName)
         </th>
         <th></th>
     </tr>
@@ -29,16 +29,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @String.Format("{0:d}", item.Date)
+            @Html.DisplayFor(modelItem => item.Anmerkung)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Venue)
+            @Html.DisplayFor(modelItem => item.Course.Venue)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Year)
+            @Html.DisplayFor(modelItem => item.Person.FirstName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

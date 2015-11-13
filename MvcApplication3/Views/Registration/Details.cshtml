@@ -1,0 +1,43 @@
+﻿@model MvcApplication3.Models.Registration
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Registration</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Anmerkung)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Anmerkung)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Course.Venue)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Course.Venue)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Person.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Person.FirstName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

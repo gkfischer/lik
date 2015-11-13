@@ -1,0 +1,62 @@
+﻿@model MvcApplication3.Models.Registration
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Registration</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Date)
+            @Html.ValidationMessageFor(model => model.Date)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Anmerkung)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Anmerkung)
+            @Html.ValidationMessageFor(model => model.Anmerkung)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CourseId, "Course")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CourseId", String.Empty)
+            @Html.ValidationMessageFor(model => model.CourseId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PersonId, "Person")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PersonId", String.Empty)
+            @Html.ValidationMessageFor(model => model.PersonId)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

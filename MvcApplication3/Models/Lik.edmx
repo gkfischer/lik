@@ -28,13 +28,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="200" />
           <Property Name="Venue" Type="varchar" MaxLength="200" />
           <Property Name="Date" Type="datetime" />
           <Property Name="Year" Type="varchar" MaxLength="2" />
-          <Property Name="Name" Type="varchar" MaxLength="200" />
           <Property Name="AmountDeposit" Type="money" />
           <Property Name="AmountInvoice1" Type="money" />
           <Property Name="AmountInvoice2" Type="money" />
+          <Property Name="DateInvoice1" Type="datetime" />
+          <Property Name="DateInvoice2" Type="datetime" />
           <Property Name="DepositDueTimeframe" Type="smallint" />
           <Property Name="Invoice1DueTimeframe" Type="smallint" />
           <Property Name="Invoice2DueTimeframe" Type="smallint" />
@@ -139,9 +141,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Venue" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="Year" Type="String" />
           <Property Name="Name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Venue" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Year" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
           <Property Name="AmountDeposit" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="AmountInvoice1" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="AmountInvoice2" Type="Decimal" Precision="19" Scale="4" />
@@ -150,6 +152,8 @@
           <Property Name="Invoice2DueTimeframe" Type="Int16" />
           <NavigationProperty Name="Registrations" Relationship="LikModel.FK_Registration_Course" FromRole="Course" ToRole="Registration" />
           <Property Type="DateTime" Name="Date" Precision="3" />
+          <Property Type="DateTime" Name="DateInvoice1" Precision="3" />
+          <Property Type="DateTime" Name="DateInvoice2" Precision="3" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
@@ -238,6 +242,8 @@
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="LikModel.Course">
               <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="DateInvoice2" ColumnName="DateInvoice2" />
+                <ScalarProperty Name="DateInvoice1" ColumnName="DateInvoice1" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Venue" ColumnName="Venue" />

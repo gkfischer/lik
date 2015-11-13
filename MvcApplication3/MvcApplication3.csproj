@@ -186,6 +186,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -216,6 +218,7 @@
     <Compile Include="Models\Person.cs">
       <DependentUpon>Lik.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PersonExtension.cs" />
     <Compile Include="Models\Registration.cs">
       <DependentUpon>Lik.tt</DependentUpon>
     </Compile>
@@ -309,6 +312,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\localization\globalize.js" />
+    <Content Include="Scripts\localization\globalize\cultures\globalize.culture.de-DE.js" />
+    <Content Include="Scripts\localization\globalize\currency.js" />
+    <Content Include="Scripts\localization\globalize\date.js" />
+    <Content Include="Scripts\localization\globalize\message.js" />
+    <Content Include="Scripts\localization\globalize\number.js" />
+    <Content Include="Scripts\localization\globalize\plural.js" />
+    <Content Include="Scripts\localization\globalize\relative-time.js" />
+    <Content Include="Scripts\localization\messages_de.js" />
+    <Content Include="Scripts\localization\node-main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -354,6 +367,17 @@
     <Content Include="Views\Course\Create.cshtml" />
     <Content Include="Views\Course\Edit.cshtml" />
     <Content Include="Views\Course\Delete.cshtml" />
+    <Content Include="Views\Person\Index.cshtml" />
+    <Content Include="Views\Person\Details.cshtml" />
+    <Content Include="Views\Person\Create.cshtml" />
+    <Content Include="Views\Person\Edit.cshtml" />
+    <Content Include="Views\Person\Delete.cshtml" />
+    <Content Include="Views\Registration\Index.cshtml" />
+    <Content Include="Views\Registration\Details.cshtml" />
+    <Content Include="Views\Registration\Create.cshtml" />
+    <Content Include="Views\Registration\Edit.cshtml" />
+    <Content Include="Views\Registration\Delete.cshtml" />
+    <Content Include="Views\Registration\IndexForPerson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

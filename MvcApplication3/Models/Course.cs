@@ -20,9 +20,9 @@ namespace MvcApplication3.Models
         }
     
         public int Id { get; set; }
+        public string Name { get; set; }
         public string Venue { get; set; }
         public string Year { get; set; }
-        public string Name { get; set; }
         public Nullable<decimal> AmountDeposit { get; set; }
         public Nullable<decimal> AmountInvoice1 { get; set; }
         public Nullable<decimal> AmountInvoice2 { get; set; }
@@ -30,6 +30,8 @@ namespace MvcApplication3.Models
         public Nullable<short> Invoice1DueTimeframe { get; set; }
         public Nullable<short> Invoice2DueTimeframe { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<System.DateTime> DateInvoice1 { get; set; }
+        public Nullable<System.DateTime> DateInvoice2 { get; set; }
     
         public virtual ICollection<Registration> Registrations { get; set; }
     }

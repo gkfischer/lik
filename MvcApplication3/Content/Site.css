@@ -462,6 +462,10 @@ textarea {
         width: auto;
     }
 
+    input[type="radio"] {
+        width: 30px;
+    }
+
     td input[type="submit"],
     td input[type="button"],
     td button {
@@ -538,6 +542,7 @@ th {
     font-size: 1.2em;
     text-align: left;
     border: none 0px;
+    padding: 0 5px;
     padding-left: 0;
 }
 
