@@ -16,6 +16,12 @@ namespace MvcApplication3.Models
             {
                 return Registrations.Max(reg => reg.Date);
             } 
+            
+        }
+
+        public string Description
+        {
+            get { return FirstName + " " + LastName + ", " + EMail + ", " + Phone; }
         }
     }
 
@@ -30,6 +36,7 @@ namespace MvcApplication3.Models
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "E-Mail Adresse muss eingegeben werden")]
+        [DataType(DataType.EmailAddress)]
         [DisplayName("E-Mail Adresse")]
         public string EMail { get; set; }
 
@@ -52,5 +59,11 @@ namespace MvcApplication3.Models
         [Required(ErrorMessage = "Ort muss eingegeben werden")]
         [DisplayName("Ort")]
         public string City { get; set; }
+    }
+
+    public enum Sex
+    {
+        M,
+        W
     }
 }

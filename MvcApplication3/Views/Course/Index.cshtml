@@ -1,27 +1,33 @@
 ﻿@model IEnumerable<MvcApplication3.Models.Course>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Kursliste";
 }
 
-<h2>Index</h2>
+<h2>Kursliste</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Neuen Kurs anlegen", "Create")
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Suche nach Namen: @Html.TextBox("SearchString")  
+        <input type="submit" value="Search" /></p>
+}
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.Name).ToString(), "Index", new {sortOrder = ViewBag.NameSortParm})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.Date).ToString(), "Index", new {sortOrder = ViewBag.DateSortParm})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Venue)
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.Venue).ToString(), "Index", new {sortOrder = ViewBag.VenueSortParm})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Year)
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.Year).ToString(), "Index", new {sortOrder = ViewBag.YearSortParm})
         </th>
         <th></th>
     </tr>
@@ -41,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.Year)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Bearbeiten", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Löschen", "Delete", new { id=item.Id }) |
+            @Html.ActionLink("Teilnehmer", "IndexForCourse", "Registration", new { courseId=item.Id }, null)
         </td>
     </tr>
 }

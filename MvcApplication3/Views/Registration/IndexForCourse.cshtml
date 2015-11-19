@@ -1,0 +1,45 @@
+﻿@model MvcApplication3.Models.Course
+
+@{
+    ViewBag.Title = "Kursteilnehmer";
+}
+
+<h2>Kursteilnehmer</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<div>
+    <h3>
+        @Html.DisplayFor(model => model.Date)
+        @Html.DisplayFor(model => model.Name),
+        @Html.DisplayFor(model => model.Year), 
+        @Html.DisplayFor(model => model.Venue)
+    </h3>
+</div>
+<table>
+    <tr>
+        <th>Kurs
+        </th>
+        <th>Datum
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Registrations)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.FirstName)
+                @Html.DisplayFor(modelItem => item.Person.LastName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@ 
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                @Html.ActionLink("Kurse","IndexForPerson","Registration", new { personId=item.Person.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>

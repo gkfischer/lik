@@ -25,10 +25,56 @@ namespace MvcApplication3.Controllers
         //
         // GET: /Default1/
 
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+
+        //    return View(db.Courses.ToList());
+        //}
+
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            var x = Thread.CurrentThread.CurrentCulture;
-            return View(db.Courses.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "name";
+            ViewBag.DateSortParm = sortOrder == "date" ? "date_desc" : "date";
+            ViewBag.VenueSortParm = sortOrder == "venue" ? "venue_desc" : "venue";
+            ViewBag.YearSortParm = sortOrder == "year" ? "year_desc" : "year";
+
+            var courses = from c in db.Courses
+                select c;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                courses = courses.Where(c => c.Name.ToLower().Contains(searchString.ToLower()));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    courses = courses.OrderByDescending(c => c.Name);
+                    break;
+                case "date_desc":
+                    courses = courses.OrderByDescending(c => c.Date);
+                    break;
+                case "date":
+                    courses = courses.OrderBy(c => c.Date);
+                    break;
+                case "venue":
+                    courses = courses.OrderBy(c => c.Venue);
+                    break;
+                case "venue_desc":
+                    courses = courses.OrderByDescending(c => c.Venue);
+                    break;
+                case "year":
+                    courses = courses.OrderBy(c => c.Year);
+                    break;
+                case "year_desc":
+                    courses = courses.OrderByDescending(c => c.Year);
+                    break;
+
+                default:
+                    courses = courses.OrderBy(c => c.Name);
+                    break;
+            }
+
+            return View(courses.ToList());
         }
 
         //

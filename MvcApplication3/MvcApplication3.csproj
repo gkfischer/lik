@@ -222,6 +222,7 @@
     <Compile Include="Models\Registration.cs">
       <DependentUpon>Lik.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegistrationExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +324,7 @@
     <Content Include="Scripts\localization\messages_de.js" />
     <Content Include="Scripts\localization\node-main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\Registration\IndexForPerson.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -377,7 +379,7 @@
     <Content Include="Views\Registration\Create.cshtml" />
     <Content Include="Views\Registration\Edit.cshtml" />
     <Content Include="Views\Registration\Delete.cshtml" />
-    <Content Include="Views\Registration\IndexForPerson.cshtml" />
+    <Content Include="Views\Registration\IndexForCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

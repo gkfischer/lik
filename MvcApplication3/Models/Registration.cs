@@ -21,9 +21,9 @@ namespace MvcApplication3.Models
     
         public int Id { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public string Anmerkung { get; set; }
         public int CourseId { get; set; }
         public int PersonId { get; set; }
+        public string Remarks { get; set; }
     
         public virtual Course Course { get; set; }
         public virtual ICollection<Invoice> Invoices { get; set; }

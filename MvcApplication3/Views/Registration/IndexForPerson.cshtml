@@ -4,15 +4,17 @@
     ViewBag.Title = "Kurse einer Person";
 }
 
-<h2>IndexForPerson</h2>
+<h2>Kurse einer Person</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <div>
     <h3>
         @Html.DisplayFor(model => model.FirstName)
-        @Html.DisplayFor(model => model.LastName)
+        @Html.DisplayFor(model => model.LastName),
+        @Html.DisplayFor(model => model.EMail),
+        @Html.DisplayFor(model => model.Phone)
     </h3>
 </div>
 <table>
@@ -35,9 +37,10 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+@*                @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                @Html.ActionLink("Teilnehmer", "IndexForCourse", "Registration", new { courseId=item.Course.Id }, null)
+           </td>
         </tr>
     }
 

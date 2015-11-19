@@ -51,7 +51,7 @@
           <Property Name="DateSent" Type="datetime" />
           <Property Name="DatePaid" Type="datetime" />
           <Property Name="DateCancellation" Type="datetime" />
-          <Property Name="Type" Type="varchar" MaxLength="20" />
+          <Property Name="Type" Type="varchar" MaxLength="200" />
           <Property Name="RegistrationId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Person">
@@ -74,7 +74,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="datetime" />
-          <Property Name="Anmerkung" Type="varchar" MaxLength="200" />
+          <Property Name="Remarks" Type="varchar" MaxLength="200" />
           <Property Name="CourseId" Type="int" Nullable="false" />
           <Property Name="PersonId" Type="int" Nullable="false" />
         </EntityType>
@@ -165,7 +165,7 @@
           <Property Name="DateSent" Type="DateTime" Precision="3" />
           <Property Name="DatePaid" Type="DateTime" Precision="3" />
           <Property Name="DateCancellation" Type="DateTime" Precision="3" />
-          <Property Name="Type" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="RegistrationId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Registration" Relationship="LikModel.FK_Invoice_Registration" FromRole="Invoice" ToRole="Registration" />
         </EntityType>
@@ -190,12 +190,12 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="Anmerkung" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="CourseId" Type="Int32" Nullable="false" />
           <Property Name="PersonId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Course" Relationship="LikModel.FK_Registration_Course" FromRole="Registration" ToRole="Course" />
           <NavigationProperty Name="Invoices" Relationship="LikModel.FK_Invoice_Registration" FromRole="Registration" ToRole="Invoice" />
           <NavigationProperty Name="Person" Relationship="LikModel.FK_Registration_Person" FromRole="Registration" ToRole="Person" />
+          <Property Type="String" Name="Remarks" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Registration_Course">
           <End Role="Course" Type="LikModel.Course" Multiplicity="1" />
@@ -290,9 +290,9 @@
           <EntitySetMapping Name="Registrations">
             <EntityTypeMapping TypeName="LikModel.Registration">
               <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Anmerkung" ColumnName="Anmerkung" />
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
               </MappingFragment>
@@ -312,7 +312,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

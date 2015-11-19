@@ -28,6 +28,12 @@ namespace MvcApplication3.Controllers
             return View(person);
         }
 
+        public ActionResult IndexForCourse(int courseId)
+        {
+            var course = db.Courses.Include(p => p.Registrations).First(p => p.Id == courseId);
+            return View(course);
+        }
+
         //
         // GET: /Registration/Details/5
 

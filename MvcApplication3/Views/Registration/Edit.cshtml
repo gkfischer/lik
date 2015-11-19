@@ -6,7 +6,8 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -24,27 +25,30 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Anmerkung)
+            @Html.LabelFor(model => model.Remarks)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Anmerkung)
-            @Html.ValidationMessageFor(model => model.Anmerkung)
+            @Html.TextAreaFor(model => model.Remarks)
+            @Html.ValidationMessageFor(model => model.Remarks)
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.CourseId, "Course")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("CourseId", String.Empty)
-            @Html.ValidationMessageFor(model => model.CourseId)
+            @Html.DisplayFor(model => model.Course.Date), 
+            @Html.ActionLink(Model.Course.Name, "Edit", "Course", new { id = Model.CourseId }, new { @class = "test", title = "Kurs anzeigen" }), 
+            Jahrgang: @Html.DisplayFor(model => model.Course.Year),
+            @Html.DisplayFor(model => model.Course.Venue)
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.PersonId, "Person")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("PersonId", String.Empty)
-            @Html.ValidationMessageFor(model => model.PersonId)
+            @Html.ActionLink(Model.Person.FirstName + " " + Model.Person.LastName, "Edit", "Person", new { id = Model.PersonId }, new { title = "Person anzeigen" }), 
+            <span title="E-Mail senden">@Html.DisplayFor(model => model.Person.EMail), </span>
+            @Html.DisplayFor(model => model.Person.Phone)
         </div>
 
         <p>
