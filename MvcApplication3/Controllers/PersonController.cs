@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcApplication3.Models;
+using PagedList;
+
 
 namespace MvcApplication3.Controllers
 {
@@ -15,7 +17,6 @@ namespace MvcApplication3.Controllers
 
         //
         // GET: /Person/
-
         public ActionResult Index()
         {
             return View(db.People.OrderBy(m => m.Registrations.OrderBy(r => r.Date).Select(r2 => r2.Date).FirstOrDefault()).ToList());
@@ -23,7 +24,6 @@ namespace MvcApplication3.Controllers
 
         //
         // GET: /Person/Details/5
-
         public ActionResult Details(int id = 0)
         {
             Person person = db.People.Find(id);

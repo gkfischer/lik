@@ -8,6 +8,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using MvcApplication3.Models;
+using PagedList;
 
 namespace MvcApplication3.Controllers
 {
@@ -31,13 +32,24 @@ namespace MvcApplication3.Controllers
         //    return View(db.Courses.ToList());
         //}
 
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
+            ViewBag.CurrentSort = sortOrder; 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "name";
             ViewBag.DateSortParm = sortOrder == "date" ? "date_desc" : "date";
             ViewBag.VenueSortParm = sortOrder == "venue" ? "venue_desc" : "venue";
             ViewBag.YearSortParm = sortOrder == "year" ? "year_desc" : "year";
 
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
             var courses = from c in db.Courses
                 select c;
             if (!String.IsNullOrEmpty(searchString))
@@ -74,7 +86,9 @@ namespace MvcApplication3.Controllers
                     break;
             }
 
-            return View(courses.ToList());
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(courses.ToPagedList(pageNumber, pageSize));
         }
 
         //
