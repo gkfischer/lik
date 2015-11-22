@@ -1,0 +1,27 @@
+﻿@using MvcApplication3.Models
+@model Invoice
+@{
+    var message = "";
+    var cssClass = "";
+    if (Model != null)
+    {
+        switch (Model.State)
+        {
+            case InvoiceState.Offen:
+                cssClass = "overdue";
+                break;
+            case InvoiceState.Versandt:
+                cssClass = "paid";
+                break;
+            case InvoiceState.Erstellt:
+                cssClass = "generated";
+                break;
+        }
+        message = Model.State.ToString("G");
+    }
+    else
+    {
+        message = "keine";
+    }
+}
+<td><span class="@cssClass">@message</span></td>

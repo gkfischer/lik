@@ -209,6 +209,7 @@
     <Compile Include="Models\Invoice.cs">
       <DependentUpon>Lik.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\InvoiceExtension.cs" />
     <Compile Include="Models\Lik.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -390,6 +391,7 @@
     <Content Include="Views\Registration\Edit.cshtml" />
     <Content Include="Views\Registration\Delete.cshtml" />
     <Content Include="Views\Registration\IndexForCourse.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\InvoiceState.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

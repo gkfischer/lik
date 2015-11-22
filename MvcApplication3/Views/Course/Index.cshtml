@@ -9,7 +9,7 @@
 <h2>Kursliste</h2>
 
 <p>
-    @Html.ActionLink("Neuen Kurs anlegen", "Create")
+    @Html.ActionLink("Neuen Kurs anlegen", "Create", null, new { @class = "link" })
 </p>
 @using (Html.BeginForm("Index", "Course", FormMethod.Get))
 {
@@ -62,5 +62,5 @@
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Index", 
+@Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -1,4 +1,5 @@
-﻿@model MvcApplication3.Models.Course
+﻿@using MvcApplication3.Models
+@model MvcApplication3.Models.Course
 
 @{
     ViewBag.Title = "Kursteilnehmer";
@@ -17,29 +18,58 @@
         @Html.DisplayFor(model => model.Venue)
     </h3>
 </div>
-<table>
+<table class="lined">
+    <thead>
     <tr>
-        <th>Kurs
+        <th>Name
         </th>
-        <th>Datum
-        </th>
+        @if (Model.HasDeposit)
+        {
+            <th>Anzahlung</th>
+        }
+        @if (Model.HasInvoice1)
+        {
+            <th>1. Rechnung</th>
+        }
+        @if (Model.HasInvoice2)
+        {
+            <th>2. Rechnung</th>
+        }
         <th></th>
     </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Registrations)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Person.FirstName)
+                    @Html.DisplayFor(modelItem => item.Person.LastName)
+                </td>
+                @if (Model.HasDeposit)
+                {
+                    @Html.DisplayFor(modelItem => item.Deposit, "InvoiceState")
+                }
+                @if (Model.HasInvoice1)
+                {
+                    @Html.DisplayFor(modelItem => item.Invoice1, "InvoiceState")
+                }
+                @if (Model.HasInvoice2)
+                {
+                    @Html.DisplayFor(modelItem => item.Invoice2, "InvoiceState")
 
-    @foreach (var item in Model.Registrations)
-    {
+                }
+                <td>
+                    @Html.ActionLink("Bearbeiten", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Löschen", "Delete", new { id = item.Id }) |
+                    @Html.ActionLink("Kurse anzeigen", "IndexForPerson", "Registration", new { personId = item.Person.Id }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Person.FirstName)
-                @Html.DisplayFor(modelItem => item.Person.LastName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@ 
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-                @Html.ActionLink("Kurse","IndexForPerson","Registration", new { personId=item.Person.Id }, null)
-            </td>
+            <t
         </tr>
-    }
-
+    </tfoot>
 </table>

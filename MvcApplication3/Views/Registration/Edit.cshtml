@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Kursanmeldung</h2>
 
 @using (Html.BeginForm())
 {
@@ -15,22 +15,6 @@
         <legend>Registration</legend>
 
         @Html.HiddenFor(model => model.Id)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Date)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Date)
-            @Html.ValidationMessageFor(model => model.Date)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Remarks)
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.Remarks)
-            @Html.ValidationMessageFor(model => model.Remarks)
-        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.CourseId, "Course")
@@ -50,6 +34,30 @@
             <span title="E-Mail senden">@Html.DisplayFor(model => model.Person.EMail), </span>
             @Html.DisplayFor(model => model.Person.Phone)
         </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Date)
+            @Html.ValidationMessageFor(model => model.Date)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PersonId, "Person")
+        </div>
+        <div>
+            Anzahlung: @Model.Deposit.State.ToString("G")
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Remarks)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Remarks)
+            @Html.ValidationMessageFor(model => model.Remarks)
+        </div>
+
 
         <p>
             <input type="submit" value="Save" />

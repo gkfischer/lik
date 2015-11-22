@@ -15,6 +15,10 @@ namespace MvcApplication3.Models
         {
             get { return Date.Value.ToShortDateString() + ", " + Name + ", Jahrgang: " + Year + ", " + Venue; }
         }
+
+        public bool HasDeposit { get { return AmountDeposit > 0; } }
+        public bool HasInvoice1 { get { return AmountInvoice1 > 0; } }
+        public bool HasInvoice2 { get { return AmountInvoice2 > 0; } }
     }
 
     public class CourseMetaData
@@ -35,10 +39,10 @@ namespace MvcApplication3.Models
         [Required(ErrorMessage = "Jahrgang muss eingegeben werden")]
         [DisplayName("Jahrgang")]
         public string Year { get; set; }
-        
+
         [DisplayName("Betrag Anzahlung")]
         public Nullable<decimal> AmountDeposit { get; set; }
-        
+
         [Required(ErrorMessage = "Betrag muss eingegeben werden")]
         [DisplayName("Betrag 1. Rechnung")]
         public Nullable<decimal> AmountInvoice1 { get; set; }
@@ -56,14 +60,14 @@ namespace MvcApplication3.Models
 
         [DisplayName("Betrag 2. Rechnung")]
         public Nullable<decimal> AmountInvoice2 { get; set; }
-        
+
         [DisplayName("Anzahlung fällig in Tagen")]
         public Nullable<short> DepositDueTimeframe { get; set; }
-        
+
         [Required(ErrorMessage = "Fälligkeit muss eingegeben werden")]
         [DisplayName("1. Rechnung fällig in Tagen")]
         public Nullable<short> Invoice1DueTimeframe { get; set; }
-        
+
         [DisplayName("2. Rechnung fällig in Tagen")]
         public Nullable<short> Invoice2DueTimeframe { get; set; }
 
