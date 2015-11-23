@@ -14,9 +14,10 @@ namespace MvcApplication3.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
-            return View();
+            var model = new HomePage();
+            model.NewRegistrations = db.Registrations.OrderByDescending(r => r.Date).Take(10).ToList();
+            model.CoursesToBill 
+            return View(model);
         }
 
         public ActionResult About()
