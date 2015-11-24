@@ -16,9 +16,47 @@ namespace MvcApplication3.Models
             get { return Date.Value.ToShortDateString() + ", " + Name + ", Jahrgang: " + Year + ", " + Venue; }
         }
 
-        public bool HasDeposit { get { return AmountDeposit > 0; } }
-        public bool HasInvoice1 { get { return AmountInvoice1 > 0; } }
-        public bool HasInvoice2 { get { return AmountInvoice2 > 0; } }
+        public bool HasDeposit
+        {
+            get
+            {
+                return AmountDeposit > 0;
+            }
+        }
+
+        public bool HasInvoice1
+        {
+            get
+            {
+                return AmountInvoice1 > 0;
+            }
+        }
+
+        public bool HasInvoice2
+        {
+            get
+            {
+                return AmountInvoice2 > 0;
+            }
+        }
+
+        public string BillDue
+        {
+            get
+            {
+                if (DateInvoice1 <= DateTime.Today && Registrations.Any() && !Registrations.Any(r => r.HasInvoice1Bill))
+                {
+                    return "Rechnung 1";
+                }
+
+                if (DateInvoice2 <= DateTime.Today && Registrations.Any() && !Registrations.Any(r => r.HasInvoice2Bill))
+                {
+                    return "Rechnung 2";
+                }
+                return string.Empty;
+            }
+        }
+
     }
 
     public class CourseMetaData

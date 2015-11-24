@@ -194,6 +194,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -393,6 +394,11 @@
     <Content Include="Views\Registration\Delete.cshtml" />
     <Content Include="Views\Registration\IndexForCourse.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\InvoiceState.cshtml" />
+    <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Invoice\Details.cshtml" />
+    <Content Include="Views\Invoice\Create.cshtml" />
+    <Content Include="Views\Invoice\Edit.cshtml" />
+    <Content Include="Views\Invoice\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

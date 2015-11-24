@@ -10,7 +10,7 @@
             Kurs
         </th>
         <th>
-            Datum
+            Datum <br />Anmeldung
         </th>
         <th></th>
     </tr>
@@ -25,7 +25,10 @@
                 @Html.DisplayFor(modelItem => item.Course.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @String.Format("{0:d}", item.Date)
+            </td>
+            <td>
+            @Html.ActionLink("Anmeldung bearbeiten", "Edit", "Registration", new { id=item.Id }, null)
             </td>
         </tr>
     }
@@ -38,10 +41,13 @@
             Kurs
         </th>
         <th>
-            Rechnungsart
+            Art
         </th>
         <th>
-            Datum
+            Datum <br />Kurs
+        </th>
+        <th>
+            geplantes<br />Rechnungsdatum 
         </th>
         <th></th>
     </tr>
@@ -53,10 +59,76 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.BillDue)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @String.Format("{0:d}", item.Date)
+            </td>
+            <td>
+                @{
+                    var datum = new DateTime();
+                    if (item.BillDue == "Rechnung 1")
+                    {
+                        datum = item.DateInvoice1.Value;
+                    }
+                    if (item.BillDue == "Rechnung 2")
+                    {
+                        datum = item.DateInvoice2.Value;
+                    }
+                }
+                @String.Format("{0:d}", datum)
+            </td>
+            <td>
+            @Html.ActionLink("Kurs bearbeiten", "Edit", "Course", new { id=item.Id }, null)
+            </td>
+        </tr>
+    }
+</table>
+
+<h2>Überfällige Rechnungen</h2>
+
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Kurs
+        </th>
+        <th>
+            Datum<br/>Rechnung
+        </th>
+        <th>
+            Betrag
+        </th>
+        <th>
+            Tage<br />Überfällig
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OverdueInvoices)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Registration.Person.LastName)
+                @Html.DisplayFor(modelItem => item.Registration.Person.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Registration.Course.Name)
+                @Html.DisplayFor(modelItem => item.Registration.Course.Date)
+            </td>
+            <td>
+                @String.Format("{0:d}", item.DateInvoice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DaysOverdue)
+            </td>
+            <td>
+                @Html.ActionLink("Rechnung Bearbeiten", "Edit", "Invoice", new { id=item.Id }, null) 
             </td>
         </tr>
     }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using MvcApplication3.Models;
@@ -12,11 +14,42 @@ namespace MvcApplication3.Controllers
     {
         private LikEntities db = new LikEntities();
 
+        protected override void Initialize(System.Web.Routing.RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("de-AT");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-AT");
+        }
+
         public ActionResult Index()
         {
             var model = new HomePage();
             model.NewRegistrations = db.Registrations.OrderByDescending(r => r.Date).Take(10).ToList();
+
             model.CoursesToBill = new List<Course>();
+            foreach (var course in db.Courses)
+            {
+                if (course.BillDue != "")
+                {
+                    model.CoursesToBill.Add(course);
+                }
+            }
+
+            model.OverdueInvoices = new List<Invoice>();
+
+            var invoices = db.Invoices.Where(
+                    i =>
+                        i.DateCancellation == null &&
+                        i.DateInvoice != null &&
+                        i.DatePaid == null);
+            foreach (var invoice in invoices)
+            {
+                if (invoice.DaysOverdue > 0)
+                {
+                    model.OverdueInvoices.Add(invoice);
+                }
+            }
+
             return View(model);
         }
 

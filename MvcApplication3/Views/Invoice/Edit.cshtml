@@ -1,0 +1,94 @@
+﻿@model MvcApplication3.Models.Invoice
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Invoice</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Amount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Amount)
+            @Html.ValidationMessageFor(model => model.Amount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DateInvoice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DateInvoice)
+            @Html.ValidationMessageFor(model => model.DateInvoice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DateSent)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DateSent)
+            @Html.ValidationMessageFor(model => model.DateSent)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DatePaid)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DatePaid)
+            @Html.ValidationMessageFor(model => model.DatePaid)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DateCancellation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DateCancellation)
+            @Html.ValidationMessageFor(model => model.DateCancellation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Type)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Type)
+            @Html.ValidationMessageFor(model => model.Type)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RegistrationId, "Registration")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("RegistrationId", String.Empty)
+            @Html.ValidationMessageFor(model => model.RegistrationId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Number)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Number)
+            @Html.ValidationMessageFor(model => model.Number)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

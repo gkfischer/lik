@@ -48,15 +48,15 @@
                 </td>
                 @if (Model.HasDeposit)
                 {
-                    @Html.DisplayFor(modelItem => item.Deposit, "InvoiceState")
+                    @Html.DisplayFor(modelItem => item.DepositBill, "InvoiceState")
                 }
                 @if (Model.HasInvoice1)
                 {
-                    @Html.DisplayFor(modelItem => item.Invoice1, "InvoiceState")
+                    @Html.DisplayFor(modelItem => item.Invoice1Bill, "InvoiceState")
                 }
                 @if (Model.HasInvoice2)
                 {
-                    @Html.DisplayFor(modelItem => item.Invoice2, "InvoiceState")
+                    @Html.DisplayFor(modelItem => item.Invoice2Bill, "InvoiceState")
 
                 }
                 <td>

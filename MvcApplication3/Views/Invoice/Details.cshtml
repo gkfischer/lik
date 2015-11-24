@@ -1,0 +1,85 @@
+﻿@model MvcApplication3.Models.Invoice
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Invoice</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Amount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Amount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DateInvoice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateInvoice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DateSent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateSent)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DatePaid)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DatePaid)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DateCancellation)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateCancellation)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Type)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Type)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Registration.Remarks)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Registration.Remarks)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Number)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Number)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DaysOverdue)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DaysOverdue)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DateDue)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateDue)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

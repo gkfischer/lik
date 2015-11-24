@@ -37,15 +37,15 @@
           <Property Name="AmountInvoice2" Type="money" />
           <Property Name="DateInvoice1" Type="datetime" />
           <Property Name="DateInvoice2" Type="datetime" />
-          <Property Name="DepositDueTimeframe" Type="smallint" />
-          <Property Name="Invoice1DueTimeframe" Type="smallint" />
-          <Property Name="Invoice2DueTimeframe" Type="smallint" />
+          <Property Name="DepositDueTimeframe" Type="int" />
+          <Property Name="Invoice1DueTimeframe" Type="int" />
+          <Property Name="Invoice2DueTimeframe" Type="int" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Amount" Type="money" />
           <Property Name="DateInvoice" Type="datetime" />
           <Property Name="DateSent" Type="datetime" />
@@ -53,6 +53,7 @@
           <Property Name="DateCancellation" Type="datetime" />
           <Property Name="Type" Type="varchar" MaxLength="200" />
           <Property Name="RegistrationId" Type="int" Nullable="false" />
+          <Property Name="Number" Type="int" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -168,6 +169,7 @@
           <Property Name="Type" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="RegistrationId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Registration" Relationship="LikModel.FK_Invoice_Registration" FromRole="Invoice" ToRole="Registration" />
+          <Property Type="Int32" Name="Number" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -261,6 +263,7 @@
           <EntitySetMapping Name="Invoices">
             <EntityTypeMapping TypeName="LikModel.Invoice">
               <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="DateInvoice" ColumnName="DateInvoice" />

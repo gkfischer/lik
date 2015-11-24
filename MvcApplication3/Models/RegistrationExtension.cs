@@ -12,31 +12,47 @@ namespace MvcApplication3.Models
     public partial class Registration
     {
         [DisplayName("Anzahlung")]
-        public Invoice Deposit
+        public Invoice DepositBill
         {
             get
             {
-                return Invoices.FirstOrDefault<Invoice>(i => i.Type == "Deposit");
+                return Invoices.FirstOrDefault<Invoice>(i => i.Type == "DepositBill");
             }
         }
 
         [DisplayName("Rechnung 1")]
-        public Invoice Invoice1
+        public Invoice Invoice1Bill
         {
             get
             {
-                return Invoices.FirstOrDefault<Invoice>(i => i.Type == "Invoice1");
+                return Invoices.FirstOrDefault<Invoice>(i => i.Type == "Invoice1Bill");
             }
         }
 
         [DisplayName("Rechnung 2")]
-        public Invoice Invoice2
+        public Invoice Invoice2Bill
         {
             get
             {
-                return Invoices.FirstOrDefault<Invoice>(i => i.Type == "Invoice2");
+                return Invoices.FirstOrDefault<Invoice>(i => i.Type == "Invoice2Bill");
             }
         }
+
+        public Boolean HasDepositBill
+        {
+            get { return DepositBill != null; }
+        }
+
+        public Boolean HasInvoice1Bill
+        {
+            get { return Invoice1Bill != null; }
+        }
+
+        public Boolean HasInvoice2Bill
+        {
+            get { return Invoice2Bill != null; }
+        }
+
     }
 
     public class RegistrationMetaData

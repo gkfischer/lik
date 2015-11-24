@@ -565,6 +565,7 @@ th {
     border: none 0px;
     padding: 0 5px;
     padding-left: 0;
+    vertical-align: bottom;
 }
 
     th a {

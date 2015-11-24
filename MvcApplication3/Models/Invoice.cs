@@ -22,6 +22,7 @@ namespace MvcApplication3.Models
         public Nullable<System.DateTime> DateCancellation { get; set; }
         public string Type { get; set; }
         public int RegistrationId { get; set; }
+        public Nullable<int> Number { get; set; }
     
         public virtual Registration Registration { get; set; }
     }
