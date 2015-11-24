@@ -16,7 +16,7 @@ namespace MvcApplication3.Controllers
         {
             var model = new HomePage();
             model.NewRegistrations = db.Registrations.OrderByDescending(r => r.Date).Take(10).ToList();
-            model.CoursesToBill 
+            model.CoursesToBill = new List<Course>();
             return View(model);
         }
 

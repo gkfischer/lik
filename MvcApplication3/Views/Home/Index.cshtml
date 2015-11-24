@@ -1,6 +1,6 @@
 ﻿@model MvcApplication3.ViewModels.HomePage
 
-<h3>Neue Anmeldungen</h3>
+<h2>Neue Anmeldungen</h2>
 <table>
     <tr>
         <th>
@@ -30,7 +30,7 @@
         </tr>
     }
 </table>
-<h3>Zu erstellnde Rechnungen</h3>
+<h2>Zu erstellende Rechnungen</h2>
 
 <table>
     <tr>
@@ -53,7 +53,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Course.Name)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
